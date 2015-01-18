@@ -197,7 +197,7 @@ public class NationChoiceAdapter extends InputAdapter {
     /** Metoda wybiera nowa rase i poczynia wszystkie zwiazane z tym ustawienia. */
     public void chooseNewNation(final AbilityNationPair pair) {
         Player activePlayer = game.getActivePlayer();
-        activePlayer.addAbilityNationPair(pair);
+        activePlayer.addAbilityNationPair(pair, game.getPhase());
         pair.setActive(true);
         setArmyPolygons(activePlayer);
 

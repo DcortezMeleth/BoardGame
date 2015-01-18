@@ -36,8 +36,6 @@ public class NextTurnButtonAdapter extends InputAdapter {
     public boolean touchDown(final int screenX, final int screenY, final int pointer, final int button) {
         int y = configuration.getIntProperty(Configuration.APP_HEIGHT) - screenY;
 
-        LOGGER.debug("Clicked x:" + screenX + ", y: " + y);
-
         if(nextTurnButton.getPolygon().contains(screenX, y)) {
             if(game.getPhase() == BoardGameMain.TurnPhase.REGROUP && !game.getActivePlayer().getTokensWithoutField().isEmpty()) {
                 game.setMessageToShow("err_regroup");

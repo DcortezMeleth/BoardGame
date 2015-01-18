@@ -131,7 +131,7 @@ public class Player {
      *
      * @param pair para rasa-umiejetnosc do ustawienia
      */
-    public void addAbilityNationPair(final AbilityNationPair pair) {
+    public void addAbilityNationPair(final AbilityNationPair pair, final BoardGameMain.TurnPhase phase) {
         nations.add(pair);
         pair.setActive(true);
         int maxArmy = pair.getAbility().getMaxUnits() + pair.getNation().getMaxUnits();
@@ -145,46 +145,83 @@ public class Player {
         for(int i = 0; i < nations.size() - 1 && i >= 0; i++) {
             nations.get(i).move(350);
         }
+
+        generateMoreTokens(phase);
     }
 
     /** Generuje wiecej tokenow rasy. */
     public void generateMoreTokens(final BoardGameMain.TurnPhase phase) {
+        if(getActiveNation() == null) {
+            return;
+        }
+
         if(phase == BoardGameMain.TurnPhase.REGROUP && getActiveNation().getNationType() == NationType.SKELETONS) {
-            int toCreate = justConqueredNotEmptyLands.size() / 2;
-            toCreate = toCreate % 2 == 0 ? toCreate : toCreate-1;
-            for(int i=0 ; i<toCreate ; i++) {
+            int toCreate = justConqueredNotEmptyLands.size()/2;
+            LOGGER.debug("Szkielety! Dodaje tokeny! " + toCreate);
+            toCreate = toCreate%2 == 0 ? toCreate : toCreate - 1;
+            ArrayList<Nation> toAdd = new ArrayList<>();
+            for(int i = 0; i < toCreate; i++) {
                 Nation nation = createNationByType(NationType.SKELETONS);
-                allTokens.add(nation);
-                stillAvailableTokens.add(nation);
-                tokensWithoutField.add(nation);
                 nation.getArmyPolygon().setPosition(500 + i*42, 130);
+                toAdd.add(nation);
             }
+            allTokens.addAll(toAdd);
+            stillAvailableTokens.addAll(toAdd);
+            tokensWithoutField.addAll(toAdd);
         }
 
         if(phase == BoardGameMain.TurnPhase.ATTACK && getActiveNation().getNationType() == NationType.AMAZONS) {
-            for(int i=0 ; i<4 ; i++) {
+            LOGGER.debug("Amazonki!Dodaje tokeny!");
+            ArrayList<Nation> toAdd = new ArrayList<>();
+            for(int i = 0; i < 4; i++) {
                 Nation nation = createNationByType(NationType.AMAZONS);
-                allTokens.add(nation);
-                stillAvailableTokens.add(nation);
-                tokensWithoutField.add(nation);
                 nation.getArmyPolygon().setPosition(500 + i*42, 130);
+                toAdd.add(nation);
             }
+            allTokens.addAll(toAdd);
+            stillAvailableTokens.addAll(toAdd);
+            tokensWithoutField.addAll(toAdd);
         }
     }
 
     /** usuwa tokeny amazonek. */
     public void removeNecessaryTokens() {
-        if(getActiveNation().getNationType() == NationType.AMAZONS) {
-            List<Nation> toRemove = allTokens.subList(0, 4);
+        if(getActiveNation() != null && getActiveNation().getNationType() == NationType.AMAZONS) {
+            LOGGER.debug("Amazonki! Usuwam 4 tokeny.");
+            int i = 4;
+            List<Nation> toRemove = new ArrayList<>();
+
+            //wybieramy 4 tokeny tak by z zadnego pola nie zdjac wszystkich
+            for(Nation nation : allTokens) {
+                //sprawdzamy ile mozemy usunac
+                int toRemoveSize = nation.getField().getArmy().size() < i + 1 ?
+                        nation.getField().getArmy().size() - 1 : i;
+
+                //dodajemy podliste jako elementy do usuniecia
+                toRemove.addAll(nation.getField().getArmy().subList(0, toRemoveSize));
+
+                //usuwamy tekeny z pola
+                nation.getField().getArmy().removeAll(toRemove);
+
+                i -= toRemoveSize;
+                if(i == 0) {
+                    break;
+                } else if(i < 0) {
+                    LOGGER.error("Usunelismy za duzo amazonek! To sie nie powinno stac.");
+                    break;
+                }
+            }
+
+            //usuwamy tokeny z list zetonow gracza
             allTokens.removeAll(toRemove);
-            stillAvailableTokens.removeAll(toRemove);
-            tokensWithoutField.removeAll(toRemove);
+            if(!tokensWithoutField.isEmpty()) {
+                tokensWithoutField.removeAll(toRemove);
+            }
         }
     }
 
     /**
-     * Odswieza list teokenow ktorymi mozemy jeszcze ruszyc.
-     * Uzywamy na poczatku tury gracza.
+     * Odswieza list tekenow ktorymi mozemy jeszcze ruszyc. Uzywamy na poczatku tury gracza.
      */
     public void refreshStillAvailable() {
         stillAvailableTokens = new ArrayList<>(allTokens);
@@ -257,12 +294,12 @@ public class Player {
             stillAvailableTokens = new ArrayList<>();
 
             // pozostawiamy po jednym tokenie wymierajacej rasy
-            for (Field field : ownedLands) {
-                if (nationType == field.getNationType()) {
+            for(Field field : ownedLands) {
+                if(nationType == field.getNationType()) {
                     field.getArmy().subList(1, field.getArmy().size()).clear();
                 }
 
-                if (nationType == NationType.HALFLINGS) {
+                if(nationType == NationType.HALFLINGS) {
                     field.setBurrow(false);
                 }
             }

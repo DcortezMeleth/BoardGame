@@ -394,18 +394,17 @@ public class BoardGameMain implements ApplicationListener {
 
     /** Mechanizm przechodzenia do kolejnej tury. */
     public void nextTurn() {
-        //niektore rasy generuja dodatkowe tokeny
-        getActivePlayer().generateMoreTokens(phase);
 
         //jesli byl atak to teraz przegrupowanie
         if(phase == TurnPhase.ATTACK) {
             LOGGER.debug("FAZA PRZGRUPOWANIA!");
             phase = TurnPhase.REGROUP;
+
+            //w fazie przegrupowania usuwamy 4 tokeny amazonek
+            getActivePlayer().removeNecessaryTokens();
+
             return;
         }
-
-        //w fazie przegrupowania usuwamy 4 tokeny amazonek
-        getActivePlayer().removeNecessaryTokens();
 
         //gracz przegrupowal wojska - kolejny gracz
         phase = TurnPhase.ATTACK;
@@ -425,6 +424,9 @@ public class BoardGameMain implements ApplicationListener {
             player++;
             LOGGER.debug("Kolejny gracz: " + (player + 1));
         }
+
+        //niektore rasy generuja dodatkowe tokeny
+        getActivePlayer().generateMoreTokens(phase);
 
         //gracz znowu moze uzyc wszystkich tokenow
         getActivePlayer().refreshStillAvailable();
