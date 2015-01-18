@@ -554,6 +554,11 @@ public abstract class BaseField implements Field, Serializable {
         }
     }
 
+    @Override
+    public void resetAttackingArmy() {
+        attackingArmy = new ArrayList<>();
+    }
+
     /**
      * Random number generator.
      */

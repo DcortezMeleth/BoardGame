@@ -213,4 +213,10 @@ public class GameMap {
     public List<Field> getFields() {
         return fields;
     }
+
+    public void resetAttackingArmies() {
+        for(Field field : fields) {
+            field.resetAttackingArmy();
+        }
+    }
 }

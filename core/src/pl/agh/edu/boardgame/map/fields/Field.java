@@ -125,12 +125,15 @@ public interface Field {
     void draw(Batch batch);
 
     /**
-     * Metoda dodaje token armii do pola. Uzywane podczas reorganizacji albo wycofania sie wojsk.
+     * Dodaje token armii do pola. Uzywane podczas reorganizacji albo wycofania sie wojsk.
      *
      * @param token token do dodania
      */
     void addArmyToken(Nation token);
 
-    /** Metoda zbiera armie i ustawia jej pozycje na jednej stercie. */
+    /** Zbiera armie i ustawia jej pozycje na jednej stercie. */
     void positionArmy();
+
+    /** Czysci atakujace armie na polu.*/
+    void resetAttackingArmy();
 }
