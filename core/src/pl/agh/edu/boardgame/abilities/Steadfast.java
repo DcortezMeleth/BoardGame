@@ -10,10 +10,7 @@ public class Steadfast extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.STEADFAST;
 
-    public static final String NAME = "Niezłomne";
-
-    private static final String DESCRIPTION = "Możesz przeprowadzić akcję wymierania rasy na koniec swojej normalnej " +
-            "tury, po fazie zdobywania monet zwycięstwa, zamiast poświęcać na to osobną turę.";
+    public static final String KEY = "steadfast";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 4;
@@ -23,13 +20,8 @@ public class Steadfast extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

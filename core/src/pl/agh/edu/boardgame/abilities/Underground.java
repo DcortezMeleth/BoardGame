@@ -11,11 +11,7 @@ public class Underground extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.UNDERGROUND;
 
-    public static final String NAME = "Podziemne";
-
-    private static final String DESCRIPTION = "Możesz podbijać regiony z jaskiniami liczbą żetonów o 1 mniejszą. " +
-            "Nadal potrzebujesz co najmniej 1 żetonu. Wszystkie regiony w twoich granicach na których znajdują się jaskinie są" +
-            " dla celów podboju traktowane jako regiony sąsiadujące ze sobą.";
+    public static final String KEY = "underground";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 5;
@@ -25,13 +21,8 @@ public class Underground extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

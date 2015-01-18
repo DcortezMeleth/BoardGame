@@ -14,10 +14,7 @@ public class Hilly extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.HILLY;
 
-    public static final String NAME = "Wzgórzyste";
-
-    private static final String DESCRIPTION = "Na koniec tury każdy region Wzgórz zajmowany przez twoją rasę przynosi" +
-            " ci dodatkowo monetę zwycięstwa. ";
+    public static final String KEY = "hilly";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 4;
@@ -27,13 +24,8 @@ public class Hilly extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

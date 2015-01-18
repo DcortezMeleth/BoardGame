@@ -57,7 +57,7 @@ public class NationChoiceAdapter extends InputAdapter {
         availableAbilities.add(new Hilly());
         availableAbilities.add(new Horseman());
         availableAbilities.add(new Looting());
-        availableAbilities.add(new Mad());
+        //availableAbilities.add(new Mad());
         availableAbilities.add(new Merchant());
         availableAbilities.add(new Sailing());
         //availableAbilities.add(new Spiritualist());
@@ -137,7 +137,7 @@ public class NationChoiceAdapter extends InputAdapter {
                     LOGGER.debug("You have earned " + pair.getCoins() + " for this choose.");
                 } else {
                     LOGGER.debug("You do not have enough money!");
-                    game.setMessageToShow("err_choose_nation");
+                    game.setMessageToShow("error.pick_nation.not_enough_money");
                     return true;
                 }
             }

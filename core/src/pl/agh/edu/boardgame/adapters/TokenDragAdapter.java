@@ -58,7 +58,7 @@ public class TokenDragAdapter extends DragListener implements InputProcessor {
                 initY = token.getY();
                 return super.touchDown(event, x, y, pointer, button);
             } else if(token1.contains((int) x,y)) {
-                game.setMessageToShow("err_token2");
+                game.setMessageToShow("error.token.no_rights");
             }
         }
 
@@ -124,7 +124,7 @@ public class TokenDragAdapter extends DragListener implements InputProcessor {
             }
         }
         if(!moved) {
-            game.setMessageToShow("err_token");
+            game.setMessageToShow("error.token.wrong_target");
             token.setPosition(initX, initY);
         }
 

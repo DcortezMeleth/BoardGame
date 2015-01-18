@@ -14,10 +14,7 @@ public class Forestry extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.FORESTRY;
 
-    public static final String NAME = "Leśne";
-
-    private static final String DESCRIPTION = "Na koniec każdej tury każdy leśny region zajmowany przez twoją rasę " +
-            "przynosi ci dodatkowo 1 monetę zwycięstwa.";
+    public static final String KEY = "forestry";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 4;
@@ -27,13 +24,8 @@ public class Forestry extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

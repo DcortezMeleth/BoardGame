@@ -81,4 +81,16 @@ public abstract class BaseAbility implements Ability, Serializable {
         return active;
     }
 
+    @Override
+    public String getDescription() {
+        return "ability." + getKey() + ".desc";
+    }
+
+    @Override
+    public String getName() {
+        return "ability." + getKey() + ".name";
+    }
+
+    /** Zwraca klucz z GameBundle po ktorym trzeba szukac tej umiejetnosci. */
+    public abstract String getKey();
 }

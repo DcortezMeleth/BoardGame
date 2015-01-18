@@ -10,10 +10,7 @@ public class Flying extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.FLYING;
 
-    public static final String NAME = "Latające";
-
-    private static final String DESCRIPTION = "Możesz podbijać jakiekolwiek regiony mapy za wyjątkiem Mórz i Jezior. " +
-            "Regiony nie muszą w żaden sposób sąsiadować z regionami już podbitymi.";
+    public static final String KEY = "flying";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 5;
@@ -23,13 +20,8 @@ public class Flying extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

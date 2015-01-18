@@ -10,10 +10,7 @@ public class Wealth extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.WEALTH;
 
-    public static final String NAME = "Zamożne";
-
-    private static final String DESCRIPTION = "Na koniec pierwszej tury obecności Zamożnej rasy na mapie otrzymujesz " +
-            "jednorazowo dodatkowe 7 monet zwycięstwa.";
+    public static final String KEY = "wealth";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 4;
@@ -24,13 +21,8 @@ public class Wealth extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

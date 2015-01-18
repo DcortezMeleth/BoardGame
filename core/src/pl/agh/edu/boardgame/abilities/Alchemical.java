@@ -11,10 +11,7 @@ public class Alchemical extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.ALCHEMICAL;
 
-    public static final String NAME = "Alchemicy";
-
-    private static final String DESCRIPTION = "Zdobywasz 2 dodatkowe monety zwycięstwa na koniec każdej tury w której" +
-            " twoja rasa pozostała aktywna.";
+    public static final String KEY = "alchemical";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 4;
@@ -24,13 +21,8 @@ public class Alchemical extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

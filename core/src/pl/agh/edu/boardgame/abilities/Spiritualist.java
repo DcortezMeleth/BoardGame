@@ -10,10 +10,7 @@ public class Spiritualist extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.SPIRITUALIST;
 
-    public static final String NAME = "Uduchowione";
-
-    private static final String DESCRIPTION = "Zdobywasz 2 dodatkowe monety zwycięstwa na koniec każdej tury w której" +
-            " twoja rasa pozostała aktywna.";
+    public static final String KEY = "spiritualist";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 5;
@@ -24,13 +21,8 @@ public class Spiritualist extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

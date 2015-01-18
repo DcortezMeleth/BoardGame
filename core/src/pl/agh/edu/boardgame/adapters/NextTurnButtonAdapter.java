@@ -38,7 +38,7 @@ public class NextTurnButtonAdapter extends InputAdapter {
 
         if(nextTurnButton.getPolygon().contains(screenX, y)) {
             if(game.getPhase() == BoardGameMain.TurnPhase.REGROUP && !game.getActivePlayer().getTokensWithoutField().isEmpty()) {
-                game.setMessageToShow("err_regroup");
+                game.setMessageToShow("error.regroup");
                 LOGGER.debug("Musisz rozmiescic wszystkie tokeny!");
                 return false;
             } else if(game.getPhase() == BoardGameMain.TurnPhase.ATTACK) {
@@ -46,7 +46,7 @@ public class NextTurnButtonAdapter extends InputAdapter {
                 //jesli gracz nie podbil zadnego pole nie bedzie mial gdzie rozstawic jednostek!
                 if(!game.getActivePlayer().getTokensWithoutField().isEmpty()
                         && !game.getActivePlayer().activeRaceFieldConquered()) {
-                    game.setMessageToShow("err_no_field_owned");
+                    game.setMessageToShow("error.next_turn.no_fields_conquered");
                     return false;
                 }
             }

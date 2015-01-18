@@ -10,12 +10,7 @@ public class Camper extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.CAMPER;
 
-    public static final String NAME = "Obozujące";
-
-    private static final String DESCRIPTION = "Podczas fazy przegrupowania rozmieść 5 Obozowisk w dowolny sposób na " +
-            "regionach kontrolowanych przez swoją rasę. Obozowisko działa jak dodatkowy żeton rasy i zwiększa " +
-            "obronność regionu o 1, a także broni przez mocą czarnoksiężników. W każdej turze możesz zmieniać ich " +
-            "rozmieszczenie. Obozowiska znikają dopiero gdy rasa wymiera.";
+    public static final String KEY = "camper";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 5;
@@ -25,13 +20,8 @@ public class Camper extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

@@ -11,10 +11,7 @@ public class Looting extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.LOOTING;
 
-    public static final String NAME = "Plądrujące";
-
-    private static final String DESCRIPTION = "Na koniec tury każdy niepusty region, jaki w tej turze podbiła " +
-            "twoja rasa przynosi ci dodatkowo 1 monetę zwycięstwa.";
+    public static final String KEY = "looting";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 5;
@@ -24,13 +21,8 @@ public class Looting extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

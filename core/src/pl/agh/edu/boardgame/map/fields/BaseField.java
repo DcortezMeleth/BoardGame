@@ -295,7 +295,6 @@ public abstract class BaseField implements Field, Serializable {
         if(player.firstAttack()) {
             if(neighbours.size() == 6 &&
                     nationType != NationType.HALFLINGS && abilityType != AbilityType.FLYING) {
-                //game.setMessageToShow("err_attack3");
                 LOGGER.debug("Nie mozna zaatakowac tego pola jako pierwszego.");
                 return false;
             } else {
@@ -422,7 +421,7 @@ public abstract class BaseField implements Field, Serializable {
             successfulAttack(player, game);
         } else {
             //gdy mamy za malo jednostek
-            game.setMessageToShow("err_attack2");
+            game.setMessageToShow("error.attack.not_enough_units");
             LOGGER.debug("Porazka! Masz za malo jednostek zeby podbic ten teren!");
         }
     }

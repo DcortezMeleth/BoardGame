@@ -12,11 +12,7 @@ public class Diplomatic extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.DIPLOMATIC;
 
-    private static final String DESCRIPTION = "Na koniec swojej tury możesz wybrać jednego z graczy, którego aktywnej" +
-            " rasy nie atakowałeś w tej turze i zawrzeć z nim pokój. Ten gracz nie może Cie atakować aż do końca " +
-            "twojej następnej tury.";
-
-    public static final String NAME = "Dyplomatyczne";
+    public static final String KEY = "diplomatic";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 5;
@@ -26,13 +22,8 @@ public class Diplomatic extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

@@ -10,11 +10,7 @@ public class Sailing extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.SAILING;
 
-    public static final String NAME = "Żeglujące";
-
-    private static final String DESCRIPTION = "Dopóki twoja Żeglująca rasa jest aktywna możesz podbijać Morza i " +
-            "Jeziora traktując je jak puste regiony. Gdy rasa jest wymierająca nadal kontrolujesz re regiony i " +
-            "zdobywasz za nie monety.";
+    public static final String KEY = "sailing";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 5;
@@ -25,13 +21,8 @@ public class Sailing extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

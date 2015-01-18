@@ -11,10 +11,7 @@ public class Brave extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.BRAVE;
 
-    public static final String NAME = "Waleczne";
-
-    private static final String DESCRIPTION = "Możesz podbijać każdy region liczbą żetonów o 1 mniejszą od wymaganej." +
-            " Nadal potrzebujesz co najmniej jednego żetonu.";
+    public static final String KEY = "brave";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 4;
@@ -25,13 +22,8 @@ public class Brave extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

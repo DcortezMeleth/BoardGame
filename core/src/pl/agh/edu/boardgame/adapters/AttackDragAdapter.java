@@ -125,7 +125,7 @@ public class AttackDragAdapter extends DragListener implements InputProcessor {
             }
         }
         if(!attacked) {
-            game.setMessageToShow("err_attack");
+            game.setMessageToShow("error.attack.wrong_target");
             token.getArmyPolygon().setPosition(initX, initY);
         }
 

@@ -14,10 +14,7 @@ public class Swampy extends BaseAbility {
 
     private static final AbilityType ABILITY_TYPE = AbilityType.SWAMPY;
 
-    public static final String NAME = "Bagienne";
-
-    private static final String DESCRIPTION = "Na koniec każdej tury każdy bagienny region zajmowany przez twoją rasę" +
-            " przynosi ci dodatkowo 1 monetę zwycięstwa.";
+    public static final String KEY = "swampy";
 
     /** Maksymalna liczba jednostek z umiejetnosci. */
     private final static int maxUnits = 4;
@@ -28,13 +25,8 @@ public class Swampy extends BaseAbility {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

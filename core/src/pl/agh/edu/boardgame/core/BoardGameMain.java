@@ -244,16 +244,21 @@ public class BoardGameMain implements ApplicationListener {
         hugeFont.draw(batch, getActivePlayer().getName(), fontX, fontY);
 
         if(pairToTooltip != null) {
-            fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
-                    - hugeFont.getBounds(pairToTooltip.getAbility().getName()).width)/2;
-            fontY = configuration.getIntProperty(Configuration.APP_HEIGHT)
-                    - hugeFont.getBounds(pairToTooltip.getAbility().getName()).height - 150;
-            hugeFont.draw(batch, pairToTooltip.getAbility().getName(), fontX, fontY);
+            String abilityName = bundle.format(pairToTooltip.getAbility().getName());
+            String abilityDesc = bundle.format(pairToTooltip.getAbility().getDescription());
+            //String nationName = bundle.format(pairToTooltip.getNation().getName());
+            //String nationDesc = bundle.format(pairToTooltip.getNation().getDescription());
 
             fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
-                    - smallFont.getWrappedBounds(pairToTooltip.getAbility().getDescription(), 1400).width)/2;
-            fontY -= smallFont.getBounds(pairToTooltip.getAbility().getDescription()).height + 100;
-            smallFont.drawWrapped(batch, pairToTooltip.getAbility().getDescription(), fontX, fontY, 1400);
+                    - hugeFont.getBounds(abilityName).width)/2;
+            fontY = configuration.getIntProperty(Configuration.APP_HEIGHT)
+                    - hugeFont.getBounds(abilityName).height - 150;
+            hugeFont.draw(batch, abilityName, fontX, fontY);
+
+            fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
+                    - smallFont.getWrappedBounds(abilityDesc, 1400).width)/2;
+            fontY -= smallFont.getBounds(abilityDesc).height + 100;
+            smallFont.drawWrapped(batch, abilityDesc, fontX, fontY, 1400);
 
             fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
                     - hugeFont.getBounds(pairToTooltip.getNation().getName()).width)/2;
