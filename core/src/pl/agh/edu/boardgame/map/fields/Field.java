@@ -134,6 +134,6 @@ public interface Field {
     /** Zbiera armie i ustawia jej pozycje na jednej stercie. */
     void positionArmy();
 
-    /** Czysci atakujace armie na polu.*/
+    /** Czysci atakujace armie na polu. */
     void resetAttackingArmy();
 }

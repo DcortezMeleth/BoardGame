@@ -57,7 +57,7 @@ public class TokenDragAdapter extends DragListener implements InputProcessor {
                 initX = token.getX();
                 initY = token.getY();
                 return super.touchDown(event, x, y, pointer, button);
-            } else if(token1.contains((int) x,y)) {
+            } else if(token1.contains((int) x, y)) {
                 game.setMessageToShow("error.token.no_rights");
             }
         }
