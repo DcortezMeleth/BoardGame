@@ -67,7 +67,7 @@ public class Giants extends BaseNation {
     @Override
     public int countAttackPerks(final int minArmySize, final Field field) {
         for(Field neighbour : field.getNeighbours()) {
-            if(neighbour.getType() == BaseField.FieldType.MOUNTAIN) {
+            if(neighbour.getType() == BaseField.FieldType.MOUNTAIN && neighbour.getNationType() == GIANTS) {
                 return minArmySize - 1;
             }
         }
