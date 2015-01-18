@@ -13,8 +13,7 @@ import static pl.agh.edu.boardgame.nations.NationType.HUMANS;
  */
 public class Humans extends BaseNation {
 
-    private static final String NAME = "Ludzie";
-    private static final String DESCRIPTION = "Na koniec tury każdy kontrolowany region Pól przynosi ci dodatkowo 1 monetę zwycięstwa.";
+    private static final String KEY = "humans";
 
     /** Ilosc tokenow */
     private final Integer units = 5;
@@ -42,13 +41,8 @@ public class Humans extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

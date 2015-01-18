@@ -6,13 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import static pl.agh.edu.boardgame.nations.NationType.HALFLINGS;
 
 /**
- * Created by Michal on 2014-11-22.
+ * @author Michal
  */
 public class Halflings extends BaseNation {
 
-    private static final String NAME = "Niziołki";
-    private static final String DESCRIPTION = "Możesz rozpocząć podboje od dowolnego regionu. W pierwszych dwóch zajętych regionach" +
-            " umieść Norki, które czynią je nietykalnymi.";
+    private static final String KEY = "halflings";
 
     /** Ilosc tokenow */
     private final Integer units = 6;
@@ -40,13 +38,8 @@ public class Halflings extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

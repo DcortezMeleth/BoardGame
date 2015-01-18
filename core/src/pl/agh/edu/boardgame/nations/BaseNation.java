@@ -93,4 +93,17 @@ public abstract class BaseNation implements Nation, Serializable {
     public int countIncome(final int income, final Player player) {
         return income;
     }
+
+    @Override
+    public String getName() {
+        return "nation." + getKey() + ".name";
+    }
+
+    @Override
+    public String getDescription() {
+        return "nation." + getKey() + ".desc";
+    }
+
+    /** Zwraca klucz z GameBundle po ktorym trzeba szukac tej umiejetnosci. */
+    protected abstract String getKey();
 }

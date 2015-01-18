@@ -92,5 +92,5 @@ public abstract class BaseAbility implements Ability, Serializable {
     }
 
     /** Zwraca klucz z GameBundle po ktorym trzeba szukac tej umiejetnosci. */
-    public abstract String getKey();
+    protected abstract String getKey();
 }

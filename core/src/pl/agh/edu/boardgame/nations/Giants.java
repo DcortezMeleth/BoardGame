@@ -12,9 +12,7 @@ import static pl.agh.edu.boardgame.nations.NationType.GIANTS;
  */
 public class Giants extends BaseNation {
 
-    private static final String NAME = "Olbrzymy";
-    private static final String DESCRIPTION = "Atakujesz regiony sąsiadujące z Górami, które już zajmujesz liczbą żetonów o 1 mniejszą " +
-            "niż wymagana. Nadal potrzebujesz co najmniej jednego żetonu.";
+    private static final String KEY = "giants";
 
     /** Ilosc tokenow */
     private final Integer units = 6;
@@ -42,13 +40,8 @@ public class Giants extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

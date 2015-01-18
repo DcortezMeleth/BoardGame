@@ -48,8 +48,6 @@ local.properties
 .gradle
 build/
 
-## Resourcy - inne dla kazdego
-resources/boardgame.properties
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 
@@ -87,6 +85,9 @@ atlassian-ide-plugin.xml
 # Package Files #
 *.jar
 
+
+## Resourcy - inne dla kazdego
+resources/boardgame.properties
 TODOS.md
 *.sample
 .idea

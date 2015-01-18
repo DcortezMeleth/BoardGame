@@ -10,8 +10,7 @@ import static pl.agh.edu.boardgame.nations.NationType.RATMEN;
  */
 public class Ratmen extends BaseNation {
 
-    private static final String NAME = "Szczuroludzie";
-    private static final String DESCRIPTION = "Sama ich liczebność jest wystarczającym atutem.";
+    private static final String KEY = "ratmen";
 
     /** Ilosc tokenow */
     private final Integer units = 8;
@@ -39,13 +38,8 @@ public class Ratmen extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

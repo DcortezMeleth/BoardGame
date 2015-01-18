@@ -10,9 +10,7 @@ import static pl.agh.edu.boardgame.nations.NationType.ELVES;
  */
 public class Elves extends BaseNation {
 
-    private static final String NAME = "Elfy";
-    private static final String DESCRIPTION = "Zachowujesz wszystkie wycofane oddziały i na koniec tury aktywnego gracza" +
-            " rozmieszczasz je w swoich regionach.";
+    private static final String KEY = "elves";
 
     /** Ilosc tokenow */
     private final Integer units = 6;
@@ -40,13 +38,8 @@ public class Elves extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

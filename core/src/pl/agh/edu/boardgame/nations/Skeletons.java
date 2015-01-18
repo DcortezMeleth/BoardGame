@@ -10,9 +10,7 @@ import static pl.agh.edu.boardgame.nations.NationType.SKELETONS;
  */
 public class Skeletons extends BaseNation {
 
-    private static final String NAME = "Szkielety";
-    private static final String DESCRIPTION = "Podczas Przegrupowania dobierz 1 dodatkowy żeton rasy z zasobnika za każde 2 " +
-            "niepuste regiony, jakie podbiłeś w tej turze.";
+    private static final String KEY = "skeletons";
 
     /** Ilosc tokenow */
     private final Integer units = 6;
@@ -40,13 +38,8 @@ public class Skeletons extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

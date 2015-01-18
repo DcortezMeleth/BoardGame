@@ -246,8 +246,8 @@ public class BoardGameMain implements ApplicationListener {
         if(pairToTooltip != null) {
             String abilityName = bundle.format(pairToTooltip.getAbility().getName());
             String abilityDesc = bundle.format(pairToTooltip.getAbility().getDescription());
-            //String nationName = bundle.format(pairToTooltip.getNation().getName());
-            //String nationDesc = bundle.format(pairToTooltip.getNation().getDescription());
+            String nationName = bundle.format(pairToTooltip.getNation().getName());
+            String nationDesc = bundle.format(pairToTooltip.getNation().getDescription());
 
             fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
                     - hugeFont.getBounds(abilityName).width)/2;
@@ -261,14 +261,14 @@ public class BoardGameMain implements ApplicationListener {
             smallFont.drawWrapped(batch, abilityDesc, fontX, fontY, 1400);
 
             fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
-                    - hugeFont.getBounds(pairToTooltip.getNation().getName()).width)/2;
-            fontY -= hugeFont.getBounds(pairToTooltip.getNation().getName()).height + 150;
-            hugeFont.draw(batch, pairToTooltip.getNation().getName(), fontX, fontY);
+                    - hugeFont.getBounds(nationName).width)/2;
+            fontY -= hugeFont.getBounds(nationName).height + 150;
+            hugeFont.draw(batch, nationName, fontX, fontY);
 
             fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
-                    - smallFont.getWrappedBounds(pairToTooltip.getNation().getDescription(), 1400).width)/2;
-            fontY -= smallFont.getBounds(pairToTooltip.getNation().getDescription()).height + 100;
-            smallFont.drawWrapped(batch, pairToTooltip.getNation().getDescription(), fontX, fontY, 1400);
+                    - smallFont.getWrappedBounds(nationDesc, 1400).width)/2;
+            fontY -= smallFont.getBounds(nationDesc).height + 100;
+            smallFont.drawWrapped(batch, nationDesc, fontX, fontY, 1400);
         }
     }
 

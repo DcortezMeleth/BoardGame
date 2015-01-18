@@ -12,8 +12,7 @@ import static pl.agh.edu.boardgame.nations.NationType.WIZARDS;
  */
 public class Wizards extends BaseNation {
 
-    private static final String NAME = "Czarodzieje";
-    private static final String DESCRIPTION = "Na koniec tury zdobywasz dodatkowo 1 monetę zwycięstwa za każdy magiczny region, jaki zajmujesz.";
+    private static final String KEY = "wizards";
 
     /** Ilosc tokenow */
     private final Integer units = 5;
@@ -41,13 +40,8 @@ public class Wizards extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    public String getKey() {
+        return KEY;
     }
 
     @Override

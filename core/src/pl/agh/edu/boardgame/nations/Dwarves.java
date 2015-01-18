@@ -12,10 +12,7 @@ import static pl.agh.edu.boardgame.nations.NationType.DWARVES;
  */
 public class Dwarves extends BaseNation {
 
-    private static final String NAME = "Krasnoludy";
-
-    private static final String DESCRIPTION = "Każdy górniczy region przynosi ci dodatkowo 1 monetę zwycięstwa. " +
-            "Nawet gdy Krasnoludy są rasą Wymierającą.";
+    private static final String KEY = "dwarves";
 
     /** Tekstura zywych jednostek. */
     private static Texture liveArmiesTexture;
@@ -43,13 +40,8 @@ public class Dwarves extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

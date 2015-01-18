@@ -71,7 +71,7 @@ public class NationChoiceAdapter extends InputAdapter {
         availableNations.add(new Dwarves());
         //availableNations.add(new Elves());
         //TODO: odblokowac po dodaniu tekstur!
-        availableNations.add(new Ghouls());
+        //availableNations.add(new Ghouls());
         availableNations.add(new Giants());
         availableNations.add(new Halflings());
         availableNations.add(new Humans());

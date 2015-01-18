@@ -10,9 +10,7 @@ import static pl.agh.edu.boardgame.nations.NationType.SORCERERS;
  */
 public class Sorcerers extends BaseNation {
 
-    private static final String NAME = "Czarnoksiężnicy";
-    private static final String DESCRIPTION = "Raz na turę możesz podbić po jednym regionie każdego innego gracza bronionym przez " +
-            "pojedynczy żeton jego Aktywnej rasy używając dodatkowego żetonu Czarnoksiężnika z zasobnika.";
+    private static final String KEY = "sorcerers";
 
     /** Ilosc tokenow */
     private final Integer units = 5;
@@ -40,13 +38,8 @@ public class Sorcerers extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

@@ -10,9 +10,7 @@ import static pl.agh.edu.boardgame.nations.NationType.AMAZONS;
  */
 public class Amazons extends BaseNation {
 
-    private static final String NAME = "Amazonki";
-
-    private static final String DESCRIPTION = "Do podboju możesz użyć dodatkowo 4 żetonów.";
+    private static final String KEY = "amazons";
 
     /** Ilosc tokenow */
     private final Integer units = 6;
@@ -40,13 +38,8 @@ public class Amazons extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

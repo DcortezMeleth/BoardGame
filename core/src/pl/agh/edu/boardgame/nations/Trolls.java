@@ -10,9 +10,7 @@ import static pl.agh.edu.boardgame.nations.NationType.TROLLS;
  */
 public class Trolls extends BaseNation {
 
-    private static final String NAME = "Trolle";
-    private static final String DESCRIPTION = "W każdym regionie umieść Legowisko, które zwięsksza jego obronność o 1, " +
-            "nawet gdy Trolle staną się rasą Wymierającą.";
+    private static final String KEY = "trolls";
 
     /** Ilosc tokenow */
     private final Integer units = 5;
@@ -40,13 +38,8 @@ public class Trolls extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

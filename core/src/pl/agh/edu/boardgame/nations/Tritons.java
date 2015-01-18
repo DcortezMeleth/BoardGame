@@ -12,9 +12,7 @@ import static pl.agh.edu.boardgame.nations.NationType.TRITONS;
  */
 public class Tritons extends BaseNation {
 
-    private static final String NAME = "Trytony";
-    private static final String DESCRIPTION = "Możesz podbijać regiony nadbrzeżne liczbą żetonów o jeden mniejszą niż wymagana. " +
-            "Nadal potrzebujesz co najmniej jednego żetonu.";
+    private static final String KEY = "tritons";
 
     /** Ilosc tokenow */
     private final Integer units = 6;
@@ -42,13 +40,8 @@ public class Tritons extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

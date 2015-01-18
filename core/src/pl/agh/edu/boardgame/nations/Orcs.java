@@ -11,9 +11,7 @@ import static pl.agh.edu.boardgame.nations.NationType.ORCS;
  */
 public class Orcs extends BaseNation {
 
-    private static final String NAME = "Orki";
-    private static final String DESCRIPTION = "Na koniec tury zdobywasz 1 dodatkową monetę zwycięstwa za każdy niepusty " +
-            "region, jaki podbiłeś w tej turze.";
+    private static final String KEY = "orcs";
 
     /** Ilosc tokenow */
     private final Integer units = 5;
@@ -41,13 +39,8 @@ public class Orcs extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override

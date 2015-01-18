@@ -10,9 +10,7 @@ import static pl.agh.edu.boardgame.nations.NationType.GHOULS;
  */
 public class Ghouls extends BaseNation {
 
-    private static final String NAME = "Ghule";
-    private static final String DESCRIPTION = "Gdy Ghule stają się rasą Wymierającą, wszystkie pozostają na mapie i nadal" +
-            " mogą dokonywać podbojów wedle standardowych zasad.";
+    private static final String KEY = "ghouls";
 
     /** Ilosc tokenow */
     private final Integer units = 5;
@@ -40,13 +38,8 @@ public class Ghouls extends BaseNation {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
-    public String getDescription() {
-        return DESCRIPTION;
+    protected String getKey() {
+        return KEY;
     }
 
     @Override
