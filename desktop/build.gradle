@@ -1,8 +1,13 @@
 apply plugin: "java"
+
+version = '1.0'
 sourceCompatibility = 1.7
+targetCompatibility = 1.7
 sourceSets.main.java.srcDirs = ["src/"]
 project.ext.mainClassName = "pl.agh.edu.boardgame.core.desktop.DesktopLauncher"
-project.ext.assetsDir = new File("./assets");
+project.ext.assetsDir = new File("../assets");
+project.ext.resourcesDir = new File("../resources");
+
 task run(dependsOn: classes, type: JavaExec) {
     main = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
@@ -10,32 +15,31 @@ task run(dependsOn: classes, type: JavaExec) {
     workingDir = project.assetsDir
     ignoreExitValue = true
 }
+
 task dist(type: Jar) {
     from files(sourceSets.main.output.classesDir)
     from files(sourceSets.main.output.resourcesDir)
     from { configurations.compile.collect { zipTree(it) } }
-    from files(project.assetsDir);
+
+    baseName = 'SmallWorld'
 
     manifest {
         attributes 'Main-Class': project.mainClassName
     }
 }
 dist.dependsOn classes
-eclipse {
-    project {
-        name = appName + "-desktop"
-        linkedResource name: 'assets', type: '2', location: 'PARENT-1-PROJECT_LOC/android/assets'
+
+task zip(type:Zip) {
+    from(files(project.assetsDir)) {
+        into 'assets/'
     }
-}
-task afterEclipseImport(description: "Post processing after project generation", group: "IDE") {
-    doLast {
-        def classpath = new XmlParser().parse(file(".classpath"))
-        new Node(classpath, "classpathentry", [kind: 'src', path: 'assets']);
-        def writer = new FileWriter(file(".classpath"))
-        def printer = new XmlNodePrinter(new PrintWriter(writer))
-        printer.setPreserveWhitespace(true)
-        printer.print(classpath)
+    from(files(project.resourcesDir)) {
+        into 'resources/'
     }
+    from dist.outputs.files
+    baseName = 'SmallWorld'
 }
+zip.dependsOn dist
+
 dependencies {
 }
