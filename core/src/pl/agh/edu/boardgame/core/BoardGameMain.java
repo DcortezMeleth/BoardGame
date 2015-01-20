@@ -439,6 +439,11 @@ public class BoardGameMain implements ApplicationListener {
         //czyscimy atakujace armie
         map.resetAttackingArmies();
 
+        //resetujemy uzywalnosci tokenow
+        for(Token token : tokens) {
+            token.resetUsage();
+        }
+
         //jesli ostatnia tura to konczymy gre
         if(turn >= MAX_TURN) {
             winner();

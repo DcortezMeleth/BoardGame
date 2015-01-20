@@ -12,7 +12,7 @@ import java.io.Serializable;
 public abstract class BaseToken implements Serializable, Token {
 
     /** Sciezka do folderu z teksturami zywych jednostek. */
-    public static final String TEXTURES_PATH = "assets/Textures/small_parts/";
+    protected static final String TEXTURES_PATH = "assets/Textures/small_parts/";
 
     /** Pole na ktorym stoi token. */
     private Field field = null;
@@ -42,5 +42,15 @@ public abstract class BaseToken implements Serializable, Token {
     public void resetPosition() {
         setPosition(x, y);
         setField(null);
+    }
+
+    @Override
+    public boolean validThisTurn() {
+        return true;
+    }
+
+
+    @Override
+    public void resetUsage() {
     }
 }

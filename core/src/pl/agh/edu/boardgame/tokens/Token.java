@@ -29,6 +29,9 @@ public interface Token {
     /** Czy mozna ustawic ten token na tym polu. */
     boolean validTarget(Field field);
 
+    /** Czy mozna go jeszcze uzyc w tej turze. */
+    boolean validThisTurn();
+
     /** Ustawia pozycje tokenu. */
     void setPosition(float x, float y);
 
@@ -37,6 +40,9 @@ public interface Token {
 
     /** Zwraca typ tokenu. */
     TokenType getType();
+
+    /** Resetuje uzycie zetonu. Uzywane na koniec tury. */
+    void resetUsage();
 
     float getX();
 

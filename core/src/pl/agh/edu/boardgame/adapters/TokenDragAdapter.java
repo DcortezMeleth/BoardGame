@@ -51,6 +51,11 @@ public class TokenDragAdapter extends DragListener implements InputProcessor {
         // sprawdzamy czy dotknieto jakis token
         for(Token token1 : game.getTokens()) {
             if(token1.contains((int) x, y) && token1.validUser(game.getActivePlayer())) {
+                if(!token1.validThisTurn()) {
+                    game.setMessageToShow("error.token.already_placed");
+                    return false;
+                }
+
                 LOGGER.debug("Dotknieto tokenu.");
                 actionDone = true;
                 token = token1;

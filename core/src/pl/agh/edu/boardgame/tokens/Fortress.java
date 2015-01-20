@@ -27,7 +27,7 @@ public class Fortress extends BaseToken {
     private final Polygon polygon;
 
     /** Czy token zostal juz polozony w tej turze. */
-    private static boolean usedInThisTurn = false;
+    private static boolean USED_IN_THIS_TURN = false;
 
     /** Czy token zostal rozmieszczony. */
     private boolean placed = false;
@@ -57,6 +57,7 @@ public class Fortress extends BaseToken {
         super.setField(field);
         if(field != null) {
             field.setFortress(true);
+            USED_IN_THIS_TURN = true;
         }
     }
 
@@ -82,6 +83,16 @@ public class Fortress extends BaseToken {
             getField().setFortress(false);
         }
         super.resetPosition();
+    }
+
+    @Override
+    public boolean validThisTurn() {
+        return !placed && !USED_IN_THIS_TURN;
+    }
+
+    @Override
+    public void resetUsage() {
+        USED_IN_THIS_TURN = false;
     }
 
     @Override

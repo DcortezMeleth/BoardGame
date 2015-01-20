@@ -26,6 +26,9 @@ public class Dragon extends BaseToken {
     /** Wierzcholki wielokata opisujacego przycisk. */
     private final Circle circle;
 
+    /** Czy token zostal juz polozony w tej turze. */
+    private static boolean USED_IN_THIS_TURN = false;
+
     public Dragon() {
         super(700, 800);
         this.circle = new Circle(POSITION, POSITION, RADIUS);
@@ -52,6 +55,7 @@ public class Dragon extends BaseToken {
         if(field != null) {
             field.setDragon(true);
         }
+        USED_IN_THIS_TURN = true;
     }
 
     @Override
@@ -75,6 +79,16 @@ public class Dragon extends BaseToken {
             getField().setDragon(false);
         }
         super.resetPosition();
+    }
+
+    @Override
+    public boolean validThisTurn() {
+        return !USED_IN_THIS_TURN;
+    }
+
+    @Override
+    public void resetUsage() {
+        USED_IN_THIS_TURN = false;
     }
 
     @Override
