@@ -89,7 +89,6 @@ atlassian-ide-plugin.xml
 ## Resourcy - inne dla kazdego
 resources/boardgame.properties
 TODOS.md
-*.sample
 .idea
 logs
 *.log
