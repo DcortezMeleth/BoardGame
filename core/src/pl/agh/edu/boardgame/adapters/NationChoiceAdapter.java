@@ -218,7 +218,7 @@ public class NationChoiceAdapter extends InputAdapter {
     private void setArmyPolygons(final Player player) {
         int i = 0;
         for(Nation token : player.getStillAvailableTokens()) {
-            token.getArmyPolygon().setPosition(500 + i*42, 130);
+            token.getArmyPolygon().setPosition(600 + i*42, 130);
             i++;
         }
     }

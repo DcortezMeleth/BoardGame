@@ -14,10 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import pl.agh.edu.boardgame.abilities.Ability;
 import pl.agh.edu.boardgame.adapters.*;
-import pl.agh.edu.boardgame.buttons.AttackButton;
-import pl.agh.edu.boardgame.buttons.ExtinctButton;
-import pl.agh.edu.boardgame.buttons.MoneyButton;
-import pl.agh.edu.boardgame.buttons.NextTurnButton;
+import pl.agh.edu.boardgame.buttons.*;
 import pl.agh.edu.boardgame.configuration.Configuration;
 import pl.agh.edu.boardgame.map.GameMap;
 import pl.agh.edu.boardgame.map.fields.BaseField;
@@ -90,6 +87,9 @@ public class BoardGameMain implements ApplicationListener {
     /** Przycisk pieniedzy. */
     private MoneyButton moneyButton;
 
+    /** Przycisk kostki. */
+    private DiceButton diceButton;
+
     /** Czcionka mala. */
     private BitmapFont smallFont;
 
@@ -111,6 +111,9 @@ public class BoardGameMain implements ApplicationListener {
     /** Czy jest wyloniony zwyciezca. */
     private boolean winner = false;
 
+    /** Czy uzyto kostki posilkow. */
+    private boolean diceUsed = false;
+
     /**
      * Konstruktor mapy.
      *
@@ -128,6 +131,7 @@ public class BoardGameMain implements ApplicationListener {
         extinctButton = new ExtinctButton(350, 120);
         attackButton = new AttackButton(350, 220);
         moneyButton = new MoneyButton(450, 20);
+        diceButton = new DiceButton(450, 120);
 
         MAX_TURN = configuration.getIntProperty(Configuration.TURN);
 
@@ -185,6 +189,7 @@ public class BoardGameMain implements ApplicationListener {
 
         batch.draw(extinctButton.getTexture(getActivePlayer(), this), extinctButton.getX(), extinctButton.getY());
         batch.draw(attackButton.getTexture(phase), attackButton.getX(), attackButton.getY());
+        batch.draw(diceButton.getTexture(), diceButton.getX(), diceButton.getY());
         batch.draw(nextTurnButton.getTexture(phase), nextTurnButton.getPolygon().getX(), nextTurnButton.getPolygon().getY());
         if(moneyButton.isActive()) {
             batch.draw(moneyButton.getTexture(), moneyButton.getPolygon().getX(), moneyButton.getPolygon().getY());
@@ -212,6 +217,7 @@ public class BoardGameMain implements ApplicationListener {
         nextTurnButton.dispose();
         extinctButton.dispose();
         attackButton.dispose();
+        diceButton.dispose();
         moneyButton.dispose();
         for(Player player1 : players) {
             for(AbilityNationPair pair : player1.getNations()) {
@@ -231,10 +237,14 @@ public class BoardGameMain implements ApplicationListener {
         float fontX, fontY;
         if(isMessageSet()) {
             fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
-                    - hugeFont.getBounds(messageToShow).width)/2;
+                    - hugeFont.getWrappedBounds(messageToShow, 1600).width)/2;
             fontY = (configuration.getIntProperty(Configuration.APP_HEIGHT)
-                    - hugeFont.getBounds(messageToShow).height)/2;
-            hugeFont.draw(batch, messageToShow, fontX, fontY);
+                    + hugeFont.getBounds(messageToShow).height)/2 + 100;
+            if(fontX > 160) {
+                hugeFont.drawWrapped(batch, messageToShow, fontX, fontY, 1600);
+            } else {
+                hugeFont.drawWrapped(batch, messageToShow, fontX, fontY, 1600, BitmapFont.HAlignment.CENTER);
+            }
         }
 
         fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
@@ -258,7 +268,7 @@ public class BoardGameMain implements ApplicationListener {
             fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
                     - smallFont.getWrappedBounds(abilityDesc, 1400).width)/2;
             fontY -= smallFont.getBounds(abilityDesc).height + 100;
-            smallFont.drawWrapped(batch, abilityDesc, fontX, fontY, 1400);
+            smallFont.drawWrapped(batch, abilityDesc, fontX, fontY, 1400, BitmapFont.HAlignment.CENTER);
 
             fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
                     - hugeFont.getBounds(nationName).width)/2;
@@ -268,7 +278,7 @@ public class BoardGameMain implements ApplicationListener {
             fontX = (configuration.getIntProperty(Configuration.APP_WIDTH)
                     - smallFont.getWrappedBounds(nationDesc, 1400).width)/2;
             fontY -= smallFont.getBounds(nationDesc).height + 100;
-            smallFont.drawWrapped(batch, nationDesc, fontX, fontY, 1400);
+            smallFont.drawWrapped(batch, nationDesc, fontX, fontY, 1400, BitmapFont.HAlignment.CENTER);
         }
     }
 
@@ -341,6 +351,7 @@ public class BoardGameMain implements ApplicationListener {
         multiplexer.addProcessor(new NextTurnButtonAdapter(this, configuration, nextTurnButton));
         multiplexer.addProcessor(new ExtinctButtonAdapter(this, configuration, extinctButton));
         multiplexer.addProcessor(new AttackButtonAdapter(this, configuration, attackButton));
+        multiplexer.addProcessor(new DiceButtonAdapter(this, configuration, diceButton));
         multiplexer.addProcessor(new MoneyButtonAdapter(configuration, moneyButton));
         multiplexer.addProcessor(nationChoice);
         Gdx.input.setInputProcessor(multiplexer);
@@ -444,6 +455,9 @@ public class BoardGameMain implements ApplicationListener {
             token.resetUsage();
         }
 
+        //resetujemy uzycie kosci posilkow
+        diceButton.reset();
+
         //jesli ostatnia tura to konczymy gre
         if(turn >= MAX_TURN) {
             winner();
@@ -542,6 +556,16 @@ public class BoardGameMain implements ApplicationListener {
         this.pairToTooltip = pairToTooltip;
     }
 
+    /** Sprawdza czy uzyto kostki posilkow. */
+    public boolean isDiceUsed() {
+        return diceUsed;
+    }
+
+    /** Ustawia uzycie kostki. */
+    public void setDiceUsed(final boolean diceUsed) {
+        this.diceUsed = diceUsed;
+    }
+
     /**
      * Pozwala wyswietlic wiadomosc na ekranie. Aby przestac wyswietlac uzywamy tej metody przekazujac null lub "" jako
      * parametr.
@@ -551,7 +575,7 @@ public class BoardGameMain implements ApplicationListener {
      */
     public void setMessageToShow(final String key, final Object... args) {
         if(key != null && !"".equals(key)) {
-            this.messageToShow = bundle.format(key, args);
+            this.messageToShow += " \n" + bundle.format(key, args);
         } else {
             this.messageToShow = "";
         }

@@ -406,6 +406,16 @@ public abstract class BaseField implements Field, Serializable {
         minArmySize = player.getActiveAbility().countAttackPerks(minArmySize, this);
         minArmySize = countAttackPenalty(minArmySize);
 
+        //posilki!
+        if(game.isDiceUsed()) {
+            Random random = new Random();
+            int reinforcements = random.nextInt(6);
+            reinforcements = reinforcements > 2 ? reinforcements - 2 : 0;
+            game.setMessageToShow("reinforcements", reinforcements);
+            attackingArmySize += reinforcements;
+            game.setDiceUsed(false);
+        }
+
         // minimalna wymagana liczba jednostek to 1
         minArmySize = minArmySize < 1 ? 1 : minArmySize;
 
