@@ -2,7 +2,6 @@ package pl.agh.edu.boardgame.buttons;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import pl.agh.edu.boardgame.core.BoardGameMain;
 import pl.agh.edu.boardgame.map.GameMap;
 import pl.agh.edu.boardgame.map.fields.Field;
 

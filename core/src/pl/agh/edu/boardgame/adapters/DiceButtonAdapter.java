@@ -5,10 +5,6 @@ import pl.agh.edu.boardgame.abilities.AbilityType;
 import pl.agh.edu.boardgame.buttons.DiceButton;
 import pl.agh.edu.boardgame.configuration.Configuration;
 import pl.agh.edu.boardgame.core.BoardGameMain;
-import pl.agh.edu.boardgame.map.fields.Field;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Bartosz
