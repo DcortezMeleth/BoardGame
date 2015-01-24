@@ -189,7 +189,7 @@ public class BoardGameMain implements ApplicationListener {
 
         batch.draw(extinctButton.getTexture(getActivePlayer(), this), extinctButton.getX(), extinctButton.getY());
         batch.draw(attackButton.getTexture(phase), attackButton.getX(), attackButton.getY());
-        batch.draw(diceButton.getTexture(), diceButton.getX(), diceButton.getY());
+        batch.draw(diceButton.getTexture(map), diceButton.getX(), diceButton.getY());
         batch.draw(nextTurnButton.getTexture(phase), nextTurnButton.getPolygon().getX(), nextTurnButton.getPolygon().getY());
         if(moneyButton.isActive()) {
             batch.draw(moneyButton.getTexture(), moneyButton.getPolygon().getX(), moneyButton.getPolygon().getY());

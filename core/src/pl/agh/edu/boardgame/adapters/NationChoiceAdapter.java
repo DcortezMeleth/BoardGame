@@ -57,7 +57,7 @@ public class NationChoiceAdapter extends InputAdapter {
         availableAbilities.add(new Hilly());
         availableAbilities.add(new Horseman());
         availableAbilities.add(new Looting());
-        //availableAbilities.add(new Mad());
+        availableAbilities.add(new Mad());
         availableAbilities.add(new Merchant());
         availableAbilities.add(new Sailing());
         //availableAbilities.add(new Spiritualist());

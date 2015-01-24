@@ -219,4 +219,14 @@ public class GameMap {
             field.resetAttackingArmy();
         }
     }
+
+    /** Zwraca pole aktualnie atakowane przez gracza. */
+    public Field getAttackedField() {
+        for(Field field : fields) {
+            if(field.getAttackingArmy().size() != 0) {
+                return field;
+            }
+        }
+        return null;
+    }
 }
