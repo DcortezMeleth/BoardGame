@@ -32,10 +32,11 @@ public class DiceButtonAdapter extends InputAdapter {
 
         if(diceButton.getPolygon().contains(screenX, y) && diceButton.isActive(game.getMap()) &&
                 game.getActivePlayer().getActiveNation() != null) {
-            //waleczne zawsze moga uzyc
+            //tylko waleczne zawsze moga uzywac
             if(game.getActivePlayer().getActiveAbility().getAbilityType() != AbilityType.MAD) {
                 diceButton.negate();
             } else {
+                //dodajemy do listy pol ktore probowalismy zaatakowac z kostka
                 diceButton.addAttackedField(game.getMap().getAttackedField());
             }
 
