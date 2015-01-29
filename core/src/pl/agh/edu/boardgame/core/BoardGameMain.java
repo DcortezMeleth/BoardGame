@@ -90,6 +90,9 @@ public class BoardGameMain implements ApplicationListener {
     /** Przycisk kostki. */
     private DiceButton diceButton;
 
+    /** Przycisk wyjscia. */
+    private ExitButton exitButton;
+
     /** Czcionka mala. */
     private BitmapFont smallFont;
 
@@ -132,6 +135,8 @@ public class BoardGameMain implements ApplicationListener {
         attackButton = new AttackButton(350, 220);
         moneyButton = new MoneyButton(450, 20);
         diceButton = new DiceButton(450, 120);
+        exitButton = new ExitButton(configuration.getIntProperty(Configuration.APP_WIDTH) - 100,
+                configuration.getIntProperty(Configuration.APP_HEIGHT) - 100);
 
         MAX_TURN = configuration.getIntProperty(Configuration.TURN);
 
@@ -191,6 +196,7 @@ public class BoardGameMain implements ApplicationListener {
         batch.draw(attackButton.getTexture(phase), attackButton.getX(), attackButton.getY());
         batch.draw(diceButton.getTexture(map), diceButton.getX(), diceButton.getY());
         batch.draw(nextTurnButton.getTexture(phase), nextTurnButton.getPolygon().getX(), nextTurnButton.getPolygon().getY());
+        batch.draw(exitButton.getTexture(), exitButton.getPolygon().getX(), exitButton.getPolygon().getY());
         if(moneyButton.isActive()) {
             batch.draw(moneyButton.getTexture(), moneyButton.getPolygon().getX(), moneyButton.getPolygon().getY());
         }
@@ -219,6 +225,7 @@ public class BoardGameMain implements ApplicationListener {
         attackButton.dispose();
         diceButton.dispose();
         moneyButton.dispose();
+        exitButton.dispose();
         for(Player player1 : players) {
             for(AbilityNationPair pair : player1.getNations()) {
                 pair.dispose();
@@ -345,6 +352,7 @@ public class BoardGameMain implements ApplicationListener {
         nationChoice = new NationChoiceAdapter(this, configuration);
         InputMultiplexer multiplexer = new InputMultiplexer();
         multiplexer.addProcessor(new MessageHideAdapter(this));
+        multiplexer.addProcessor(new ExitButtonAdapter(configuration, exitButton));
         multiplexer.addProcessor(new AttackDragAdapter(this, configuration));
         multiplexer.addProcessor(new RegroupDragAdapter(this, configuration));
         multiplexer.addProcessor(new TokenDragAdapter(this, configuration));
